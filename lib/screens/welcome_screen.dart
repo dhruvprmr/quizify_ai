@@ -1,9 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:get/get.dart';
+import 'package:quizify_ai/screens/quiz_screen.dart';
 import 'package:quizify_ai/utils/constants.dart';
 
+// ignore: must_be_immutable
 class WelcomeScreen extends StatelessWidget {
   TextEditingController userNameController = TextEditingController();
+
+  String assetName = 'assets/bg.svg';
+
   WelcomeScreen({super.key});
 
   @override
@@ -12,7 +18,7 @@ class WelcomeScreen extends StatelessWidget {
       body: Stack(
         fit: StackFit.expand,
         children: [
-          SvgPicture.asset("asset/bg.svg", fit: BoxFit.fitWidth),
+          SvgPicture.asset("assets/icons/bg.svg", fit: BoxFit.fitWidth),
           SafeArea(
             child: Padding(
               padding: EdgeInsets.symmetric(horizontal: kDefaultPadding),
@@ -42,19 +48,25 @@ class WelcomeScreen extends StatelessWidget {
                     ),
                   ),
                   Spacer(),
-                  Container(
-                    padding: EdgeInsets.all(kDefaultPadding * 0.75),
-                    decoration: BoxDecoration(
-                      gradient: kPrimaryGradient,
-                      borderRadius: BorderRadius.all(Radius.circular(12)),
-                    ),
-                    width: double.infinity,
-                    alignment: Alignment.center,
-                    child: Text(
-                      "Let's Start Quiz",
-                      style: TextStyle(color: Colors.black),
+                  GestureDetector(
+                    onTap: () {
+                      Get.to(QuizScreen());
+                    },
+                    child: Container(
+                      padding: EdgeInsets.all(kDefaultPadding * 0.75),
+                      decoration: BoxDecoration(
+                        gradient: kPrimaryGradient,
+                        borderRadius: BorderRadius.all(Radius.circular(12)),
+                      ),
+                      width: double.infinity,
+                      alignment: Alignment.center,
+                      child: Text(
+                        "Let's Start Quiz",
+                        style: TextStyle(color: Colors.black),
+                      ),
                     ),
                   ),
+                  const Spacer(flex: 2),
                 ],
               ),
             ),
