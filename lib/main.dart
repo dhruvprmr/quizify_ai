@@ -1,24 +1,32 @@
+// ignore_for_file: library_private_types_in_public_api, use_build_context_synchronously
+
 import 'package:flutter/material.dart';
-import 'package:get/get_navigation/get_navigation.dart';
-import 'package:quizify_ai/screens/welcome_screen.dart';
+import 'package:quizify_ai/screens/Dashboard.dart';
 
-void main() {
-  runApp(GetMaterialApp(home: MyApp()));
-}
+void main() => runApp(Quizify());
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+class Quizify extends StatelessWidget {
+  const Quizify({super.key});
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      darkTheme: ThemeData.dark(),
-      themeMode: ThemeMode.dark,
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+      debugShowCheckedModeBanner: false,
+      title: 'AI Quiz App',
+      theme: ThemeData.dark().copyWith(
+        scaffoldBackgroundColor: Color(0xFF121212),
+        textTheme: ThemeData.dark().textTheme.apply(fontFamily: 'Montserrat'),
+        elevatedButtonTheme: ElevatedButtonThemeData(
+          style: ElevatedButton.styleFrom(
+            backgroundColor: Colors.blueAccent,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(16),
+            ),
+            padding: EdgeInsets.symmetric(vertical: 16, horizontal: 24),
+          ),
+        ),
       ),
-      title: "Quizify",
-      home: WelcomeScreen(),
+      home: DashboardScreen(),
     );
   }
 }
